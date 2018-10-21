@@ -14,7 +14,7 @@ This archetype was built using the [docker-maven-java-app](https://github.com/fu
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=docker-maven-java-app-archetype \
-     -DarchetypeVersion=0.1.0
+     -DarchetypeVersion=0.2.0
 ```
 
 **All Parameters**
@@ -22,7 +22,7 @@ mvn archetype:generate \
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=docker-maven-java-app-archetype \
-     -DarchetypeVersion=0.1.0 \
+     -DarchetypeVersion=0.2.0 \
      -DgroupId="com.mycompany" \
      -DartifactId="my2ndapp" \
      -Dversion="0.1.0-SNAPSHOT" \

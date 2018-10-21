@@ -1,0 +1,289 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+${symbol_pound}!/bin/sh
+${symbol_pound} ----------------------------------------------------------------------------
+${symbol_pound} Licensed to the Apache Software Foundation (ASF) under one
+${symbol_pound} or more contributor license agreements.  See the NOTICE file
+${symbol_pound} distributed with this work for additional information
+${symbol_pound} regarding copyright ownership.  The ASF licenses this file
+${symbol_pound} to you under the Apache License, Version 2.0 (the
+${symbol_pound} "License"); you may not use this file except in compliance
+${symbol_pound} with the License.  You may obtain a copy of the License at
+${symbol_pound}
+${symbol_pound}    http://www.apache.org/licenses/LICENSE-2.0
+${symbol_pound}
+${symbol_pound} Unless required by applicable law or agreed to in writing,
+${symbol_pound} software distributed under the License is distributed on an
+${symbol_pound} "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+${symbol_pound} KIND, either express or implied.  See the License for the
+${symbol_pound} specific language governing permissions and limitations
+${symbol_pound} under the License.
+${symbol_pound} ----------------------------------------------------------------------------
+
+${symbol_pound} ----------------------------------------------------------------------------
+${symbol_pound} Maven2 Start Up Batch script
+${symbol_pound}
+${symbol_pound} Required ENV vars:
+${symbol_pound} ------------------
+${symbol_pound}   JAVA_HOME - location of a JDK home dir
+${symbol_pound}
+${symbol_pound} Optional ENV vars
+${symbol_pound} -----------------
+${symbol_pound}   M2_HOME - location of maven2's installed home dir
+${symbol_pound}   MAVEN_OPTS - parameters passed to the Java VM when running Maven
+${symbol_pound}     e.g. to debug Maven itself, use
+${symbol_pound}       set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+${symbol_pound}   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
+${symbol_pound} ----------------------------------------------------------------------------
+
+if [ -z "${symbol_dollar}MAVEN_SKIP_RC" ] ; then
+
+  if [ -f /etc/mavenrc ] ; then
+    . /etc/mavenrc
+  fi
+
+  if [ -f "${symbol_dollar}HOME/.mavenrc" ] ; then
+    . "${symbol_dollar}HOME/.mavenrc"
+  fi
+
+fi
+
+${symbol_pound} OS specific support.  ${symbol_dollar}var _must_ be set to either true or false.
+cygwin=false;
+darwin=false;
+mingw=false
+case "`uname`" in
+  CYGWIN*) cygwin=true ;;
+  MINGW*) mingw=true;;
+  Darwin*) darwin=true
+    ${symbol_pound} Use /usr/libexec/java_home if available, otherwise fall back to /Library/Java/Home
+    ${symbol_pound} See https://developer.apple.com/library/mac/qa/qa1170/_index.html
+    if [ -z "${symbol_dollar}JAVA_HOME" ]; then
+      if [ -x "/usr/libexec/java_home" ]; then
+        export JAVA_HOME="`/usr/libexec/java_home`"
+      else
+        export JAVA_HOME="/Library/Java/Home"
+      fi
+    fi
+    ;;
+esac
+
+if [ -z "${symbol_dollar}JAVA_HOME" ] ; then
+  if [ -r /etc/gentoo-release ] ; then
+    JAVA_HOME=`java-config --jre-home`
+  fi
+fi
+
+if [ -z "${symbol_dollar}M2_HOME" ] ; then
+  ${symbol_pound}${symbol_pound} resolve links - ${symbol_dollar}0 may be a link to maven's home
+  PRG="${symbol_dollar}0"
+
+  ${symbol_pound} need this for relative symlinks
+  while [ -h "${symbol_dollar}PRG" ] ; do
+    ls=`ls -ld "${symbol_dollar}PRG"`
+    link=`expr "${symbol_dollar}ls" : '.*-> ${symbol_escape}(.*${symbol_escape})${symbol_dollar}'`
+    if expr "${symbol_dollar}link" : '/.*' > /dev/null; then
+      PRG="${symbol_dollar}link"
+    else
+      PRG="`dirname "${symbol_dollar}PRG"`/${symbol_dollar}link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  M2_HOME=`dirname "${symbol_dollar}PRG"`/..
+
+  ${symbol_pound} make it fully qualified
+  M2_HOME=`cd "${symbol_dollar}M2_HOME" && pwd`
+
+  cd "${symbol_dollar}saveddir"
+  ${symbol_pound} echo Using m2 at ${symbol_dollar}M2_HOME
+fi
+
+${symbol_pound} For Cygwin, ensure paths are in UNIX format before anything is touched
+if ${symbol_dollar}cygwin ; then
+  [ -n "${symbol_dollar}M2_HOME" ] &&
+    M2_HOME=`cygpath --unix "${symbol_dollar}M2_HOME"`
+  [ -n "${symbol_dollar}JAVA_HOME" ] &&
+    JAVA_HOME=`cygpath --unix "${symbol_dollar}JAVA_HOME"`
+  [ -n "${symbol_dollar}CLASSPATH" ] &&
+    CLASSPATH=`cygpath --path --unix "${symbol_dollar}CLASSPATH"`
+fi
+
+${symbol_pound} For Mingw, ensure paths are in UNIX format before anything is touched
+if ${symbol_dollar}mingw ; then
+  [ -n "${symbol_dollar}M2_HOME" ] &&
+    M2_HOME="`(cd "${symbol_dollar}M2_HOME"; pwd)`"
+  [ -n "${symbol_dollar}JAVA_HOME" ] &&
+    JAVA_HOME="`(cd "${symbol_dollar}JAVA_HOME"; pwd)`"
+  ${symbol_pound} TODO classpath?
+fi
+
+if [ -z "${symbol_dollar}JAVA_HOME" ]; then
+  javaExecutable="`which javac`"
+  if [ -n "${symbol_dollar}javaExecutable" ] && ! [ "`expr ${symbol_escape}"${symbol_dollar}javaExecutable${symbol_escape}" : '${symbol_escape}([^ ]*${symbol_escape})'`" = "no" ]; then
+    ${symbol_pound} readlink(1) is not available as standard on Solaris 10.
+    readLink=`which readlink`
+    if [ ! `expr "${symbol_dollar}readLink" : '${symbol_escape}([^ ]*${symbol_escape})'` = "no" ]; then
+      if ${symbol_dollar}darwin ; then
+        javaHome="`dirname ${symbol_escape}"${symbol_dollar}javaExecutable${symbol_escape}"`"
+        javaExecutable="`cd ${symbol_escape}"${symbol_dollar}javaHome${symbol_escape}" && pwd -P`/javac"
+      else
+        javaExecutable="`readlink -f ${symbol_escape}"${symbol_dollar}javaExecutable${symbol_escape}"`"
+      fi
+      javaHome="`dirname ${symbol_escape}"${symbol_dollar}javaExecutable${symbol_escape}"`"
+      javaHome=`expr "${symbol_dollar}javaHome" : '${symbol_escape}(.*${symbol_escape})/bin'`
+      JAVA_HOME="${symbol_dollar}javaHome"
+      export JAVA_HOME
+    fi
+  fi
+fi
+
+if [ -z "${symbol_dollar}JAVACMD" ] ; then
+  if [ -n "${symbol_dollar}JAVA_HOME"  ] ; then
+    if [ -x "${symbol_dollar}JAVA_HOME/jre/sh/java" ] ; then
+      ${symbol_pound} IBM's JDK on AIX uses strange locations for the executables
+      JAVACMD="${symbol_dollar}JAVA_HOME/jre/sh/java"
+    else
+      JAVACMD="${symbol_dollar}JAVA_HOME/bin/java"
+    fi
+  else
+    JAVACMD="`which java`"
+  fi
+fi
+
+if [ ! -x "${symbol_dollar}JAVACMD" ] ; then
+  echo "Error: JAVA_HOME is not defined correctly." >&2
+  echo "  We cannot execute ${symbol_dollar}JAVACMD" >&2
+  exit 1
+fi
+
+if [ -z "${symbol_dollar}JAVA_HOME" ] ; then
+  echo "Warning: JAVA_HOME environment variable is not set."
+fi
+
+CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher
+
+${symbol_pound} traverses directory structure from process work directory to filesystem root
+${symbol_pound} first directory with .mvn subdirectory is considered project base directory
+find_maven_basedir() {
+
+  if [ -z "${symbol_dollar}1" ]
+  then
+    echo "Path not specified to find_maven_basedir"
+    return 1
+  fi
+
+  basedir="${symbol_dollar}1"
+  wdir="${symbol_dollar}1"
+  while [ "${symbol_dollar}wdir" != '/' ] ; do
+    if [ -d "${symbol_dollar}wdir"/.mvn ] ; then
+      basedir=${symbol_dollar}wdir
+      break
+    fi
+    ${symbol_pound} workaround for JBEAP-8937 (on Solaris 10/Sparc)
+    if [ -d "${symbol_dollar}{wdir}" ]; then
+      wdir=`cd "${symbol_dollar}wdir/.."; pwd`
+    fi
+    ${symbol_pound} end of workaround
+  done
+  echo "${symbol_dollar}{basedir}"
+}
+
+${symbol_pound} concatenates all lines of a file
+concat_lines() {
+  if [ -f "${symbol_dollar}1" ]; then
+    echo "${symbol_dollar}(tr -s '${symbol_escape}n' ' ' < "${symbol_dollar}1")"
+  fi
+}
+
+BASE_DIR=`find_maven_basedir "${symbol_dollar}(pwd)"`
+if [ -z "${symbol_dollar}BASE_DIR" ]; then
+  exit 1;
+fi
+
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound} Extension to allow automatically downloading the maven-wrapper.jar from Maven-central
+${symbol_pound} This allows using the maven wrapper in projects that prohibit checking in binary data.
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+if [ -r "${symbol_dollar}BASE_DIR/.mvn/wrapper/maven-wrapper.jar" ]; then
+    if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+      echo "Found .mvn/wrapper/maven-wrapper.jar"
+    fi
+else
+    if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+      echo "Couldn't find .mvn/wrapper/maven-wrapper.jar, downloading it ..."
+    fi
+    jarUrl="https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.4.2/maven-wrapper-0.4.2.jar"
+    while IFS="=" read key value; do
+      case "${symbol_dollar}key" in (wrapperUrl) jarUrl="${symbol_dollar}value"; break ;;
+      esac
+    done < "${symbol_dollar}BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
+    if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+      echo "Downloading from: ${symbol_dollar}jarUrl"
+    fi
+    wrapperJarPath="${symbol_dollar}BASE_DIR/.mvn/wrapper/maven-wrapper.jar"
+
+    if command -v wget > /dev/null; then
+        if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+          echo "Found wget ... using wget"
+        fi
+        wget "${symbol_dollar}jarUrl" -O "${symbol_dollar}wrapperJarPath"
+    elif command -v curl > /dev/null; then
+        if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+          echo "Found curl ... using curl"
+        fi
+        curl -o "${symbol_dollar}wrapperJarPath" "${symbol_dollar}jarUrl"
+    else
+        if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+          echo "Falling back to using Java to download"
+        fi
+        javaClass="${symbol_dollar}BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.java"
+        if [ -e "${symbol_dollar}javaClass" ]; then
+            if [ ! -e "${symbol_dollar}BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
+                if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+                  echo " - Compiling MavenWrapperDownloader.java ..."
+                fi
+                ${symbol_pound} Compiling the Java class
+                ("${symbol_dollar}JAVA_HOME/bin/javac" "${symbol_dollar}javaClass")
+            fi
+            if [ -e "${symbol_dollar}BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
+                ${symbol_pound} Running the downloader
+                if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+                  echo " - Running MavenWrapperDownloader.java ..."
+                fi
+                ("${symbol_dollar}JAVA_HOME/bin/java" -cp .mvn/wrapper MavenWrapperDownloader "${symbol_dollar}MAVEN_PROJECTBASEDIR")
+            fi
+        fi
+    fi
+fi
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+${symbol_pound} End of extension
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound}
+
+export MAVEN_PROJECTBASEDIR=${symbol_dollar}{MAVEN_BASEDIR:-"${symbol_dollar}BASE_DIR"}
+if [ "${symbol_dollar}MVNW_VERBOSE" = true ]; then
+  echo ${symbol_dollar}MAVEN_PROJECTBASEDIR
+fi
+MAVEN_OPTS="${symbol_dollar}(concat_lines "${symbol_dollar}MAVEN_PROJECTBASEDIR/.mvn/jvm.config") ${symbol_dollar}MAVEN_OPTS"
+
+${symbol_pound} For Cygwin, switch paths to Windows format before running java
+if ${symbol_dollar}cygwin; then
+  [ -n "${symbol_dollar}M2_HOME" ] &&
+    M2_HOME=`cygpath --path --windows "${symbol_dollar}M2_HOME"`
+  [ -n "${symbol_dollar}JAVA_HOME" ] &&
+    JAVA_HOME=`cygpath --path --windows "${symbol_dollar}JAVA_HOME"`
+  [ -n "${symbol_dollar}CLASSPATH" ] &&
+    CLASSPATH=`cygpath --path --windows "${symbol_dollar}CLASSPATH"`
+  [ -n "${symbol_dollar}MAVEN_PROJECTBASEDIR" ] &&
+    MAVEN_PROJECTBASEDIR=`cygpath --path --windows "${symbol_dollar}MAVEN_PROJECTBASEDIR"`
+fi
+
+WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
+
+exec "${symbol_dollar}JAVACMD" ${symbol_escape}
+  ${symbol_dollar}MAVEN_OPTS ${symbol_escape}
+  -classpath "${symbol_dollar}MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar" ${symbol_escape}
+  "-Dmaven.home=${symbol_dollar}{M2_HOME}" "-Dmaven.multiModuleProjectDirectory=${symbol_dollar}{MAVEN_PROJECTBASEDIR}" ${symbol_escape}
+  ${symbol_dollar}{WRAPPER_LAUNCHER} ${symbol_dollar}MAVEN_CONFIG "${symbol_dollar}@"

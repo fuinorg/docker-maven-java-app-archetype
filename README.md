@@ -5,7 +5,7 @@ Maven archetype for a dockerized Java standalone application with Maven build.
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.fuin.archetypes/docker-maven-java-app-archetype/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.fuin.archetypes/docker-maven-java-app-archetype/)
 [![LGPLv3 License](http://img.shields.io/badge/license-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl.html)
 
-This archetype was built using the [docker-maven-java-app](https://github.com/fuinorg/docker-maven-java-app) sample appliaction.
+This archetype was built using the [docker-maven-java-app](https://github.com/fuinorg/docker-maven-java-app) sample application.
 
 ## Create project
 
@@ -14,7 +14,7 @@ This archetype was built using the [docker-maven-java-app](https://github.com/fu
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=docker-maven-java-app-archetype \
-     -DarchetypeVersion=0.1.0-SNAPSHOT
+     -DarchetypeVersion=0.1.0
 ```
 
 **All Parameters**
@@ -22,7 +22,7 @@ mvn archetype:generate \
 mvn archetype:generate \
      -DarchetypeGroupId=org.fuin.archetypes \
      -DarchetypeArtifactId=docker-maven-java-app-archetype \
-     -DarchetypeVersion=0.1.0-SNAPSHOT \
+     -DarchetypeVersion=0.1.0 \
      -DgroupId="com.mycompany" \
      -DartifactId="my2ndapp" \
      -Dversion="0.1.0-SNAPSHOT" \

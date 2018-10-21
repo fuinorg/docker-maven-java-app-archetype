@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor name="org.fuin.archetypes.docker-maven-java-app-archetype">
+
+    <id>docker-maven-java-app-archetype</id>
+
+    <requiredProperties>
+        <requiredProperty key="groupId"><defaultValue>com.mycompany</defaultValue></requiredProperty>
+        <requiredProperty key="artifactId"><defaultValue>myapp</defaultValue></requiredProperty>
+        <requiredProperty key="version"><defaultValue>0.1.0-SNAPSHOT</defaultValue></requiredProperty>
+        <requiredProperty key="pkgPath"><defaultValue>com/mycompany/myapp</defaultValue></requiredProperty>
+        <requiredProperty key="pkgName"><defaultValue>com.mycompany.myapp</defaultValue></requiredProperty>
+        <requiredProperty key="description"><defaultValue>My cool application</defaultValue></requiredProperty>
+        <requiredProperty key="appName"><defaultValue>myapp</defaultValue></requiredProperty>
+        <requiredProperty key="company"><defaultValue>mycomp</defaultValue></requiredProperty>
+    </requiredProperties>
+
+    <fileSets>        
+        <fileSet filtered="true">
+            <directory>.mvn/wrapper</directory>
+            <includes>
+                <include>maven-wrapper.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>.mvn/wrapper</directory>
+            <includes>
+                <include>MavenWrapperDownloader.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>mvnw.cmd</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>README.md</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>LICENSE</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>src/main</directory>
+            <includes>
+                <include>assembly.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>src/main/java/__pkgPath__</directory>
+            <includes>
+                <include>HelloWorld.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>src/main/docker</directory>
+            <includes>
+                <include>Dockerfile</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>src/test/java/__pkgPath__</directory>
+            <includes>
+                <include>HelloWorldIT.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>mvnw</include>
+            </includes>
+        </fileSet>
+                <fileSet filtered="false">
+            <directory>.mvn/wrapper</directory>
+            <includes>
+                <include>maven-wrapper.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false">
+            <directory>data</directory>
+            <includes>
+                <include>.gitignore</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="false">
+            <directory></directory>
+            <includes>
+                <include>.gitignore</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+
+</archetype-descriptor>

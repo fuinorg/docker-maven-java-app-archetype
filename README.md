@@ -26,10 +26,11 @@ mvn archetype:generate \
      -DgroupId="com.mycompany" \
      -DartifactId="my2ndapp" \
      -Dversion="0.1.0-SNAPSHOT" \
-     -DpackageName="com.mycompany.my2ndapp" \
-     -DpackagePath="com/mycompany/my2ndapp" \
+     -DpkgName="com.mycompany.my2ndapp" \
+     -DpkgPath="com/mycompany/my2ndapp" \
      -DappName="my2ndapp" \
-     -Dcompany="mycompany99"
+     -Dcompany="mycompany99" \
+     -Ddescription="A description"
 ```
 
 **Explanation**
@@ -38,10 +39,11 @@ mvn archetype:generate \
 <tr><td>groupId</td><td>com.mycompany.mydsl</td><td>Maven 'groupId'</td></tr>
 <tr><td>artifactId</td><td>com.mycompany.mydsl</td><td>Maven 'artifactId'</td></tr>
 <tr><td>version</td><td>0.1.0-SNAPSHOT</td><td>Maven 'version'</td></tr>
-<tr><td>packageName</td><td>com.mycompany.mydsl</td><td>Java Package (Should be most of the times identical to the 'groupId')</td></tr>
-<tr><td>packagePath</td><td>com/mycompany/mydsl</td><td>Same as package, but instead of '.' the '/' is used as separator</td></tr>
+<tr><td>pkgName</td><td>com.mycompany.mydsl</td><td>Java Package (Should be most of the times identical to the 'groupId')</td></tr>
+<tr><td>pkgPath</td><td>com/mycompany/mydsl</td><td>Same as package, but instead of '.' the '/' is used as separator</td></tr>
 <tr><td>appName</td><td>my2ndapp</td><td>Application and Docker repository name with least one lowercase, alpha-numeric characters, optionally separated by periods, dashes or underscores.  ('a'-'z', '0'-'9', '-', '_', No spaces)</td></tr>
 <tr><td>company</td><td>mycompany99</td><td>Docker ID must be between 4 and 30 characters long, and can only contain numbers and lowercase letters ('a'-'z', '0'-'9', No spaces)</td></tr>
+<tr><td>description</td><td>My cool application</td><td>Describes your application</td></tr>
 </table>
 
 ## Finalize the setup
